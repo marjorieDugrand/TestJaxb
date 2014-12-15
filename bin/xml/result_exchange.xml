@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<exchange date="14:55:30.000+01:00">
+    <consumerId>c1</consumerId>
+    <producerId>p1</producerId>
+    <received>true</received>
+    <responseTime timeUnit="ms">10</responseTime>
+</exchange>

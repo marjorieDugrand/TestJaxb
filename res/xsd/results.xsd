@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Add more values if needed -->
+	<xsd:simpleType name="timeUnitType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ms"/>
+			<xsd:enumeration value="secs"/>
+			<xsd:enumeration value="mins"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="percentage_t">
+		<xsd:annotation>
+			<xsd:documentation>The percent type specifies a percentage from 0 to 100.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:minInclusive value="0.0"/>
+			<xsd:maxInclusive value="100.0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<!-- complex types -->
+	<xsd:complexType name="responseTime_t">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:positiveInteger">
+				<xsd:attribute name="timeUnit" type="timeUnitType" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="exchange_t" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="consumerId" type="xsd:string"/>
+			<xsd:element name="producerId" type="xsd:string"/>
+			<xsd:element name="received" type="xsd:boolean"/>
+			<xsd:element name="responseTime" type="responseTime_t"/>
+		</xsd:sequence>
+		<xsd:attribute name="date" type="xsd:time" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="screenshot_t" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="memoryUsed" type="percentage_t"/>
+			<xsd:element name="cpuUsed" type="percentage_t"/>
+		</xsd:sequence>
+		<xsd:attribute name="date" type="xsd:time" use="required"/>
+	</xsd:complexType>
+
+
+	<xsd:element name="generalResults">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="lostMessages" type="percentage_t"/>
+				<xsd:element name="averageResponseTime" type="responseTime_t"/>
+				<xsd:element name="minResponseTime" type="responseTime_t"/>
+				<xsd:element name="maxResponseTime" type="responseTime_t"/>
+				<xsd:element name="averageMemoryUsed" type="percentage_t"/>
+				<xsd:element name="averageCPUUsed" type="percentage_t"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="exchanges">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="exchange" type="exchange_t" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="busEnvironmentUsage">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="screenshot" type="screenshot_t" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:element name="results">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="generalResults"/>
+				<xsd:element ref="exchanges"/>
+				<xsd:element ref="busEnvironmentUsage"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

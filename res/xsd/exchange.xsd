@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:simpleType name="timeUnitType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ms"/>
+			<xsd:enumeration value="secs"/>
+			<xsd:enumeration value="mins"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="responseTime_t">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:positiveInteger">
+				<xsd:attribute name="timeUnit" type="timeUnitType" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="exchange_t">
+		<xsd:sequence>
+			<xsd:element name="consumerId" type="xsd:string"/>
+			<xsd:element name="producerId" type="xsd:string"/>
+			<xsd:element name="received" type="xsd:boolean"/>
+			<xsd:element name="responseTime" type="responseTime_t"/>
+		</xsd:sequence>
+		<xsd:attribute name="date" type="xsd:time" use="required"/>
+	</xsd:complexType>
+		
+	<xsd:element name="exchange" type="exchange_t"/>
+	
+</xsd:schema>

@@ -1,0 +1,6 @@
+<exchange date="00:00:01">
+	<consumerId>c1</consumerId>
+    <producerId>p1</producerId>
+  	<received>true</received>
+  	<responseTime timeUnit="ms">14</responseTime>
+</exchange>

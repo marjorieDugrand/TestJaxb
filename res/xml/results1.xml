@@ -1,0 +1,35 @@
+<results>
+    <generalResults>
+    	<lostMessages>14</lostMessages>                
+    	<averageResponseTime timeUnit="ms">9</averageResponseTime>
+    	<minResponseTime timeUnit="ms">6</minResponseTime>
+	    <maxResponseTime timeUnit="ms">14</maxResponseTime>
+    	<averageMemoryUsed>17</averageMemoryUsed>
+    	<averageCPUUsed>56</averageCPUUsed>
+	</generalResults>    
+	<exchanges>
+    	<exchange date="00:00:01">
+        	<consumerId>c1</consumerId>
+        	<producerId>p1</producerId>
+        	<received>true</received>
+        	<responseTime timeUnit="ms">14</responseTime>
+    	</exchange>
+    	<exchange date="00:00:02">
+        	<consumerId>c2</consumerId>
+        	<producerId>p1</producerId>
+        	<received>true</received>
+        	<responseTime timeUnit="ms">7</responseTime>
+    	</exchange>
+    </exchanges>
+
+    <busEnvironmentUsage>
+        <screenshot date="00:00:01">
+            <memoryUsed>22</memoryUsed>
+            <cpuUsed>69</cpuUsed>
+        </screenshot>
+        <screenshot date="00:00:02">
+            <memoryUsed>10</memoryUsed>
+            <cpuUsed>51</cpuUsed>
+        </screenshot>
+    </busEnvironmentUsage>
+</results>
